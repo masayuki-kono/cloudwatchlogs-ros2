@@ -1,9 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 project(cloudwatch_logger)
 
-# Add support for C++14
-if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 14)
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
 # Enable strict compiler flags if possible.
@@ -51,7 +50,6 @@ ament_target_dependencies(${CLOUDWATCH_LOGGER_LIBRARY_TARGET}
         std_srvs
         aws_common
         aws_ros2_common
-        AWSSDK
         cloudwatch_logs_common
         dataflow_lite
         file_management
