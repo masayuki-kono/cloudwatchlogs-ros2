@@ -53,8 +53,8 @@ def generate_launch_description():
         ),
         Node(
             package='cloudwatch_logger',
-            node_executable='cloudwatch_logger',
-            node_name=launch.substitutions.LaunchConfiguration('node_name'),
+            executable='cloudwatch_logger',
+            name=launch.substitutions.LaunchConfiguration('node_name'),
             parameters=parameters,
             # workaround until https://github.com/ros2/rmw_fastrtps/issues/265 is resolved
             arguments=["__log_disable_rosout:=true"],
