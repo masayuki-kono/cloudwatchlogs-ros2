@@ -68,6 +68,9 @@ int main(int argc, char ** argv)
   Aws::CloudWatchLogs::Utils::ReadCloudWatchOptions(parameter_reader, cloudwatch_options);
 
   Aws::SDKOptions sdk_options;
+  // avoid SIGPIPE
+  //  see https://github.com/facebookincubator/velox/pull/3843
+  sdk_options.httpOptions.installSigPipeHandler = true;
   Aws::InitAPI(sdk_options);
 
   // configure aws settings
