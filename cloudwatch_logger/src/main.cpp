@@ -67,14 +67,15 @@ int main(int argc, char ** argv)
 
   Aws::CloudWatchLogs::Utils::ReadCloudWatchOptions(parameter_reader, cloudwatch_options);
 
+  Aws::SDKOptions sdk_options;
+  Aws::InitAPI(sdk_options);
+
   // configure aws settings
   Aws::Client::ClientConfigurationProvider client_config_provider(parameter_reader);
   Aws::Client::ClientConfiguration config = client_config_provider.GetClientConfiguration();
 
-  Aws::SDKOptions sdk_options;
-
   Aws::CloudWatchLogs::Utils::LogNode cloudwatch_logger(min_log_verbosity, ignore_nodes);
-  cloudwatch_logger.Initialize(log_group, log_stream, config, sdk_options, cloudwatch_options);
+  cloudwatch_logger.Initialize(log_group, log_stream, config, cloudwatch_options);
 
   std::function<bool(const std::shared_ptr<rmw_request_id_t>,
                      const std_srvs::srv::Trigger::Request::SharedPtr,

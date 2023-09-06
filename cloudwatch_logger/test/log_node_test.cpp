@@ -127,11 +127,13 @@ protected:
     Aws::SDKOptions sdk_options;
     Aws::CloudWatchLogs::CloudWatchOptions cloudwatch_options;
 
+    Aws::InitAPI(sdk_options);
+
     EXPECT_CALL(*log_service_factory,
                 CreateLogService(StrEq(log_group), StrEq(log_stream), Eq(config), _, _))
     .WillOnce(Return(log_service));
 
-    log_node->Initialize(log_group, log_stream, config, sdk_options, cloudwatch_options, log_service_factory);
+    log_node->Initialize(log_group, log_stream, config, cloudwatch_options, log_service_factory);
 
     EXPECT_CALL(*log_service, start()).Times(1);
 

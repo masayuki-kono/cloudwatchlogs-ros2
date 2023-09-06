@@ -40,11 +40,11 @@ LogNode::LogNode(int8_t min_log_severity, std::unordered_set<std::string> ignore
 LogNode::~LogNode() { this->log_service_ = nullptr; }
 
 void LogNode::Initialize(const std::string & log_group, const std::string & log_stream,
-                         const Aws::Client::ClientConfiguration & config, Aws::SDKOptions & sdk_options,
+                         const Aws::Client::ClientConfiguration & config,
                          const Aws::CloudWatchLogs::CloudWatchOptions & cloudwatch_options,
                          const std::shared_ptr<LogServiceFactory>& factory)
 {
-  this->log_service_ = factory->CreateLogService(log_group, log_stream, config, sdk_options, cloudwatch_options);
+  this->log_service_ = factory->CreateLogService(log_group, log_stream, config, cloudwatch_options);
 }
 
 bool LogNode::checkIfOnline(std_srvs::srv::Trigger::Request & /*request*/, std_srvs::srv::Trigger::Response & response)
