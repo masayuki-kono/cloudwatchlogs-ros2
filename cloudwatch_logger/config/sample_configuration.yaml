@@ -52,7 +52,7 @@ cloudwatch_logger:
       # in an aws account, you can switch to a different region using the drop-down on the upper right corner
       # logs sent to CloudWatch Logs will appear in the region indicated below
       # default value is: "us-west-2"
-      region: "us-west-2"
+      region: "ap-northeast-1"
 
       # Values that determine the length of time, in milliseconds, to wait before timing out a request. You can increase
       # this value if you need to transfer large files, such as in Amazon S3 or Amazon CloudFront.
