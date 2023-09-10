@@ -17,7 +17,6 @@ find_package(file_management REQUIRED)
 
 set(CLOUDWATCH_LOGGER_LIBRARY_TARGET ${PROJECT_NAME}_lib)
 
-
 ###########
 ## Build ##
 ###########
@@ -49,7 +48,6 @@ add_executable(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
         ${CLOUDWATCH_LOGGER_LIBRARY_TARGET}
         )
-
 
 #############
 ## Install ##
@@ -83,7 +81,6 @@ ament_export_dependencies(dataflow_lite)
 ament_export_dependencies(file_management)
 
 ament_package()
-
 
 #############
 ## Tests ##
