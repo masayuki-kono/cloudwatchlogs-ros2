@@ -5,23 +5,6 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# Enable strict compiler flags if possible.
-include(CheckCXXCompilerFlag)
-# Removed -Wmissing-declarations until gmock is ignored
-# removed -Werror=pedantic until ros.h is fixed
-set(FLAGS -Wno-long-long -Wall -Wextra -Wcast-align -Wcast-qual -Wformat -Wwrite-strings)
-foreach(FLAG ${FLAGS})
-  check_cxx_compiler_flag(${FLAG} R${FLAG})
-  if(${R${FLAG}})
-    set(WARNING_CXX_FLAGS "${WARNING_CXX_FLAGS} ${FLAG}")
-  endif()
-endforeach()
-
-if(NOT DEFINED CXX_DISABLE_WERROR)
-  set(WARNING_CXX_FLAGS "-Werror ${WARNING_CXX_FLAGS}")
-endif()
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${WARNING_CXX_FLAGS}")
-
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rcl_interfaces REQUIRED)
