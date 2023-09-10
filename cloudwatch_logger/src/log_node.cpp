@@ -136,7 +136,7 @@ const std::string LogNode::FormatLogs(const rcl_interfaces::msg::Log::SharedPtr&
   ss << "[node name: " << log_msg->name << "] ";
 
   ss << log_msg->msg << "\n";
-  std::cout << log_msg->msg << std::endl;
+  // std::cout << log_msg->msg << std::endl;
 
   return ss.str();
 }
